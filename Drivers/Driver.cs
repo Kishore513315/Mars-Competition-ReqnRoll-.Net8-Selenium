@@ -28,7 +28,6 @@ namespace MarsCompetitionReqnroll.Net8Selenium.Drivers
 
         public static string TakeScreenshot(string scenarioName)
         {
-            // ensure folder exists
             string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Reports");
             Directory.CreateDirectory(folderPath);
 
@@ -47,9 +46,7 @@ namespace MarsCompetitionReqnroll.Net8Selenium.Drivers
             {
                 _driver?.Quit();
             }
-            catch
-            {
-            }
+            catch { }
             finally
             {
                 _driver = null;
@@ -60,8 +57,8 @@ namespace MarsCompetitionReqnroll.Net8Selenium.Drivers
         {
             foreach (var c in Path.GetInvalidFileNameChars())
                 name = name.Replace(c, '_');
+
             return name;
         }
     }
 }
-

@@ -1,0 +1,84 @@
+﻿{
+  "EducationTests": [
+    {
+      "TestCaseId": "TC-001",
+      "University": "Auckland University",
+      "Country": "New Zealand",
+      "Title": "B.Tech",
+      "Degree": "Computer Science",
+      "Year": "2020"
+    },
+    {
+      "TestCaseId": "TC-002",
+      "University": "Auckland University",
+      "Country": "New Zealand",
+      "Title": "B.Tech",
+      "Degree": "Computer Science",
+      "Year": "2020"
+    },
+    {
+      "TestCaseId": "TC-003",
+      "University": "EIT College",
+      "Country": "New Zealand",
+      "Title": "PHD",
+      "Degree": "Information Technology",
+      "Year": "2021"
+    },
+    {
+      "TestCaseId": "TC-004",
+      "University": "Temporary University",
+      "Country": "Australia",
+      "Title": "M.B.A",
+      "Degree": "Business",
+      "Year": "2022"
+    },
+    {
+      "TestCaseId": "TC-005",
+      "University": "123456",
+      "Country": "India",
+      "Title": "M.Tech",
+      "Degree": "12345",
+      "Year": "2021"
+    },
+    {
+      "TestCaseId": "TC-006",
+      "University": "!@#$%^&*()",
+      "Country": "India",
+      "Title": "B.Tech",
+      "Degree": ")(*&^%$#@!",
+      "Year": "2021"
+    },
+    {
+      "TestCaseId": "TC-007",
+      "University": "Test for field boundary analysis to check the long characters for the test scenario 123456779909 @#$%^",
+      "Country": "New Zealand",
+      "Title": "PHD",
+      "Degree": "Advanced Computer Science and Artificial Intelligence",
+      "Year": "2024"
+    },
+    {
+      "TestCaseId": "TC-008A",
+      "University": "Victoria University",
+      "Country": "New Zealand",
+      "Title": "Associate",
+      "Degree": "Software Engineering",
+      "Year": "2022"
+    },
+    {
+      "TestCaseId": "TC-008B",
+      "University": "AUT University",
+      "Country": "New Zealand",
+      "Title": "B.Tech",
+      "Degree": "Information Systems",
+      "Year": "2023"
+    },
+    {
+      "TestCaseId": "TC-009",
+      "University": "",
+      "Country": "New Zealand",
+      "Title": "M.B.A",
+      "Degree": "Business",
+      "Year": "2024"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
@@ -22,14 +22,12 @@ namespace MarsCompetitionReqnroll.Net8Selenium.Pages
         private readonly By loginButton = By.XPath("//button[text()='Login']");
         private readonly By dashboardUserLocator = By.XPath("//span[contains(text(),'Hi')]");
 
-        // Navigate to login page
         public void GoToLoginPage()
         {
             _driver.Navigate().GoToUrl("http://localhost:5003/");
             _wait.Until(ExpectedConditions.ElementToBeClickable(signInLink)).Click();
         }
 
-        // Enter credentials
         public void EnterCredentials(string email, string password)
         {
             var emailField = _wait.Until(ExpectedConditions.ElementIsVisible(usernameField));
@@ -41,13 +39,11 @@ namespace MarsCompetitionReqnroll.Net8Selenium.Pages
             passwordFieldEl.SendKeys(password);
         }
 
-        // Click login button
         public void ClickLogin()
         {
             _wait.Until(ExpectedConditions.ElementToBeClickable(loginButton)).Click();
         }
 
-        // Check if dashboard is visible after login
         public bool IsDashboardVisible()
         {
             try
@@ -75,3 +71,4 @@ namespace MarsCompetitionReqnroll.Net8Selenium.Pages
         }
     }
 }
+

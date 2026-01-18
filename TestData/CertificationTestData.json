@@ -1,0 +1,56 @@
+﻿{
+    "CertificationTests": [
+      {
+        "TestCaseId": "TC_01",
+        "Certificate": "ISTQB CTFL",
+        "From": "ANZQB",
+        "Year": "2023"
+      },
+      {
+        "TestCaseId": "TC_02",
+        "Certificate": "ISTQB CTFL",
+        "From": "ANZQB",
+        "Year": "2023"
+      },
+      {
+        "TestCaseId": "TC_03",
+        "Certificate": "ISTQB CTFL",
+        "From": "ANZQB",
+        "Year": "2024"
+      },
+      {
+        "TestCaseId": "TC_04",
+        "Certificate": "ISTQB TAE"
+      },
+      {
+        "TestCaseId": "TC_05",
+        "Certificate": "12345",
+        "From": "987654",
+        "Year": "2020"
+      },
+      {
+        "TestCaseId": "TC_07",
+        "Certificate": "!@#$%",
+        "From": ")(*&^",
+        "Year": "2021"
+      },
+      {
+        "TestCaseId": "TC_08",
+        "Certificate": "hwkefbhkhwkrbrfiwker7834782737 e wqufqwe f2uoefwheuoi!@$%%jskeljkdfljkjfilqwwrjgl,wehfljasbjkbdjlkqebjfklsdgerrfdfewrgwe",
+        "From": "beiklfjbjrkgbljkrdflwahkdfbqwkhejilwjkdsfioekldbv,smiekfhsjfdgieukrg984t9euirejkfbjk",
+        "Year": "2009"
+      },
+      {
+        "TestCaseId": "TC_010",
+        "Certificate": "",
+        "From": "",
+        "Year": ""
+      }
+    ],
+  "Messages": {
+    "MANDATORY_FIELDS_ERROR": "Please enter Certification Name, Certification From and Certification Year",
+    "ALREADY_EXISTS_CERTIFICATION_ERROR": "This information is already exist.",
+    "DUPLICATE_CERTIFICATION_ERROR": "Duplicated data"
+  }
+  }
+

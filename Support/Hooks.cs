@@ -1,8 +1,9 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
-using AventStack.ExtentReports.Reporter;
 using MarsCompetitionReqnroll.Net8Selenium.Drivers;
+using MarsCompetitionReqnroll.Net8Selenium.Pages;
 using MarsCompetitionReqnroll.Net8Selenium.Utilities;
+using Newtonsoft.Json.Linq;
 using Reqnroll;
 using System;
 
@@ -14,11 +15,14 @@ namespace MarsCompetitionReqnroll.Net8Selenium.Support
         private static ExtentReports _extent = ExtentManager.GetExtent();
         private static ExtentTest? _feature;
         private static ExtentTest? _scenario;
-        private readonly ScenarioContext _scenarioContext;
 
-        public Hooks(ScenarioContext scenarioContext)
+        private readonly ScenarioContext _scenarioContext;
+        private readonly FeatureContext _featureContext;
+
+        public Hooks(ScenarioContext scenarioContext, FeatureContext featureContext)
         {
             _scenarioContext = scenarioContext;
+            _featureContext = featureContext;
         }
 
         [BeforeTestRun]
@@ -30,28 +34,47 @@ namespace MarsCompetitionReqnroll.Net8Selenium.Support
         [BeforeFeature]
         public static void BeforeFeature(FeatureContext feature)
         {
-            if (_extent != null)
-            {
-                _feature = _extent.CreateTest<Feature>(feature.FeatureInfo.Title);
-            }
+            _feature = _extent.CreateTest<Feature>(feature.FeatureInfo.Title);
         }
 
         [BeforeScenario]
         public void BeforeScenario()
         {
-            if (_feature == null)
-            {
-                _feature = _extent.CreateTest<AventStack.ExtentReports.Gherkin.Model.Feature>(
-                    FeatureContext.Current.FeatureInfo.Title
-                );
-            }
-
-            _scenario = _feature.CreateNode<AventStack.ExtentReports.Gherkin.Model.Scenario>(
-                _scenarioContext.ScenarioInfo.Title
-            );
-
+            _scenario = _feature!.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
 
             Driver.InitializeDriver();
+
+            var scenarioTags = _scenarioContext.ScenarioInfo.Tags;
+            var featureTags = _featureContext.FeatureInfo.Tags;
+
+            bool hasLoginTag =
+                scenarioTags.Contains("login") ||
+                featureTags.Contains("login");
+
+            if (hasLoginTag)
+            {
+                PerformLogin();
+            }
+        }
+
+        private void PerformLogin()
+        {
+            var driver = Driver.GetDriver();
+            var loginPage = new LoginPage(driver);
+
+            JObject data = JsonReader.GetData("TestData/SignInData.json");
+            var user = data["validUser"]
+                       ?? throw new Exception("validUser not found in SignInData.json");
+
+            loginPage.GoToLoginPage();
+            loginPage.EnterCredentials(
+                user["Email"]!.ToString(),
+                user["Password"]!.ToString()
+            );
+            loginPage.ClickLogin();
+
+            if (!loginPage.IsDashboardVisible())
+                throw new Exception("Login failed — dashboard not visible.");
         }
 
         [AfterStep]
@@ -66,6 +89,7 @@ namespace MarsCompetitionReqnroll.Net8Selenium.Support
             else
             {
                 string screenshotPath = Driver.TakeScreenshot(_scenarioContext.ScenarioInfo.Title);
+
                 _scenario!.CreateNode(stepInfo.StepDefinitionType.ToString(), stepInfo.Text)
                           .Fail(_scenarioContext.TestError.Message)
                           .AddScreenCaptureFromPath(screenshotPath);
@@ -81,19 +105,7 @@ namespace MarsCompetitionReqnroll.Net8Selenium.Support
         [AfterTestRun]
         public static void AfterTestRun()
         {
-            try
-            {
-                _extent.Flush();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Extent flush failed: " + e);
-            }
+            _extent.Flush();
         }
     }
 }
-
-
-
-
-
