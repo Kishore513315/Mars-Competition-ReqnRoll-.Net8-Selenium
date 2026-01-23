@@ -19,9 +19,7 @@ namespace MarsCompetitionReqnroll.Net8Selenium.StepDefinitions
         public SignInFeatureStepDefinitions()
         {
             _driver = Driver.GetDriver();
-
             _loginPage = new LoginPage(_driver);
-
             _data = JsonReader.GetData("TestData/SignInData.json");
         }
 
@@ -37,10 +35,10 @@ namespace MarsCompetitionReqnroll.Net8Selenium.StepDefinitions
             var user = _data["validUser"]
                        ?? throw new Exception("validUser not found in SignInData.json");
 
-            string email = user["Email"]!.ToString();
-            string password = user["Password"]!.ToString();
-
-            _loginPage.EnterCredentials(email, password);
+            _loginPage.EnterCredentials(
+                user["Email"]!.ToString(),
+                user["Password"]!.ToString()
+            );
         }
 
         [When(@"I click on the login button")]
@@ -52,13 +50,13 @@ namespace MarsCompetitionReqnroll.Net8Selenium.StepDefinitions
         [Then(@"I should be redirected to the dashboard")]
         public void ThenIShouldBeRedirectedToTheDashboard()
         {
-            Assert.That(_loginPage.IsDashboardVisible(), Is.True, "Dashboard was not displayed.");
+            Assert.That(_loginPage.IsDashboardVisible(), Is.True);
         }
 
         [Then(@"the user name should be displayed on the top right corner")]
         public void ThenTheUserNameShouldBeDisplayedOnTheTopRightCorner()
         {
-            Assert.That(_loginPage.IsUserNameDisplayed(), Is.True, "User name was not visible.");
+            Assert.That(_loginPage.IsUserNameDisplayed(), Is.True);
         }
     }
 }

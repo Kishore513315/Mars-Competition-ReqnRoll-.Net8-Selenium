@@ -8,6 +8,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TestData\CertificationTestData.json" />
+    <None Remove="TestData\educationTestData.json" />
+    <None Remove="TestData\SignInData.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TestData\CertificationTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\educationTestData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\SignInData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
     <PackageReference Include="ExtentReports" Version="5.0.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
@@ -26,19 +44,12 @@
 
   <ItemGroup>
     <Folder Include="Reports\" />
-    <Folder Include="Pages\" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Features\Login.feature.cs">
       <DependentUpon>Login.feature</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="TestData\SignInData.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
